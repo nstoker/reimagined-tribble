@@ -8,7 +8,8 @@ Task::Task(const QString& name, QWidget *parent) :
 {
     ui->setupUi(this);
     setName(name);
-    connect(ui->editButton, &QPushButton::clicked, this, &Task::rename);
+    connect(ui->editButton, &QPushButton::clicked,
+            this, &Task::rename);
 }
 
 Task::~Task()
