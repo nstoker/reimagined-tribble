@@ -12,8 +12,12 @@ class Task : public QWidget
     Q_OBJECT
 
 public:
-    explicit Task(QWidget *parent = 0);
+    explicit Task(const QString& name, QWidget *parent = 0);
     ~Task();
+
+    void setName(const QString& name);
+    QString name() const;
+    bool isCompleted() const;
 
 private:
     Ui::Task *ui;
