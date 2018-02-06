@@ -1,5 +1,6 @@
 #include "task.h"
 #include "ui_task.h"
+#include <QDebug>
 #include <QInputDialog>
 
 Task::Task(const QString& name, QWidget *parent) :
@@ -10,6 +11,13 @@ Task::Task(const QString& name, QWidget *parent) :
     setName(name);
     connect(ui->editButton, &QPushButton::clicked,
             this, &Task::rename);
+    connect(ui->removeButton, &QPushButton::clicked,
+            [this, name] {
+        qDebug() << "Trying to remove " << [] (const QString& taskName) -> QString {
+            return "----------" + taskName.toUpper();
+        }(name);
+        this->emit removed(this);
+    });
 }
 
 Task::~Task()
