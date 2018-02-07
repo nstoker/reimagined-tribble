@@ -1,4 +1,4 @@
-//#include <QLayout>
+#include <QLayout>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "sysinfo.h"
@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     SysInfo::instance().init();
-    ui->centralWidget->layout()->addWidget(&mCpuWidget);
+    //ui->centralWidget->layout()->addWidget(&mCpuWidget); // FIXME Throwing segfaults
 }
 
 MainWindow::~MainWindow()
