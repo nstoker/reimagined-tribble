@@ -1,3 +1,4 @@
+#include <QDebug>
 #include <QLayout>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -13,10 +14,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     SysInfo::instance().init();
-    // Ok the issue seems to be in the layout()->addWidget code. Sigh.
+
     ui->centralWidget->layout()->addWidget(&mCpuWidget);
     ui->centralWidget->layout()->addWidget(&mMemoryWidget);
-
 }
 
 MainWindow::~MainWindow()
