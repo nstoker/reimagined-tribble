@@ -2,7 +2,7 @@
 #define SYSINFOLINUXIMPL_H
 
 #include <QtGlobal>
-#include <QtVector>
+#include <QVector>
 
 #include "sysinfo.h"
 

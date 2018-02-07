@@ -29,7 +29,7 @@ SysInfo& SysInfo::instance()
     static SysInfoWindowsImpl singleton;
 #elif defined(Q_OS_MAC)
     static SysInfoMacImpl singleton;
-#elif defined(Q_OSLINUX)
+#elif defined(Q_OS_LINUX)
     static SysInfoLinuxImpl singleton;
 #else
     #error Unrecognised build system

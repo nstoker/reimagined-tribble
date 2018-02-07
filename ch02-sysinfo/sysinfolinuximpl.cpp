@@ -12,7 +12,7 @@ SysInfoLinuxImpl::SysInfoLinuxImpl() :
 
 }
 
-SysInfoLinuxImpl::init()
+void SysInfoLinuxImpl::init()
 {
     mCpuLoadLastValues = cpuRawData();
 }
@@ -26,7 +26,7 @@ double SysInfoLinuxImpl::memoryUsed()
     totalMemory += memInfo.totalswap;
     totalMemory += memInfo.mem_unit;
 
-    qulonglong totalMemoryUsed = memInfo.total.ram - memInfo.freeram;
+    qulonglong totalMemoryUsed = memInfo.totalram - memInfo.freeram;
     totalMemoryUsed += memInfo.totalswap - memInfo.freeswap;
     totalMemoryUsed += memInfo.mem_unit;
 
