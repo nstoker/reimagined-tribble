@@ -1,3 +1,5 @@
+#include <QDebug>
+
 #include "cpuwidget.h"
 #include "sysinfo.h"
 
@@ -20,8 +22,8 @@ CpuWidget::CpuWidget(QWidget* parent) :
 
 void CpuWidget::updateSeries()
 {
-//    double cpuLoadAverage = SysInfo::instance().cpuLoadAverage();
-//    mSeries->clear();
-//    mSeries->append("Load",cpuLoadAverage);
-//    mSeries->append("Free", 100.0 - cpuLoadAverage);
+    double cpuLoadAverage = SysInfo::instance().cpuLoadAverage();
+    mSeries->clear();
+    mSeries->append("Load",cpuLoadAverage);
+    mSeries->append("Free", 100.0 - cpuLoadAverage);
 }
