@@ -4,3 +4,9 @@ SysInfo::SysInfo()
 {
 
 }
+
+
+SysInfo::~SysInfo()
+{
+
+}
