@@ -4,14 +4,19 @@
 #include "sysinfo.h"
 #include "cpuwidget.h"
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    mCpuWidget(this)
+    mCpuWidget(this),
+    mMemoryWidget(this)
 {
     ui->setupUi(this);
     SysInfo::instance().init();
-    //ui->centralWidget->layout()->addWidget(&mCpuWidget); // FIXME Throwing segfaults
+
+    // Ok the issue seems to be in the layout()->addWidget code. Sigh.
+    ui->centralWidget->layout()->addWidget(&mCpuWidget);
+    ui->centralWidget->layout()->addWidget(&mMemoryWidget);
 }
 
 MainWindow::~MainWindow()
