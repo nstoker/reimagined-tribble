@@ -1,6 +1,8 @@
 #include "album.h"
 
 
-Album::Album()
+Album::Album(const QString& name) :
+    mId(-1),
+    mName(name)
 {
 }
