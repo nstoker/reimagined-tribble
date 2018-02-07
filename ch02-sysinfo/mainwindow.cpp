@@ -4,6 +4,7 @@
 #include "sysinfo.h"
 #include "cpuwidget.h"
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
@@ -11,7 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     SysInfo::instance().init();
-    ui->centralWidget->layout()->addWidget(&mCpuWidget);
+    //ui->centralWidget->layout()->addWidget(&mCpuWidget);
+
 }
 
 MainWindow::~MainWindow()
