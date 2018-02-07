@@ -42,5 +42,11 @@ linux {
     SOURCES += sysinfolinuximpl.cpp
     HEADERS += sysinfolinuximpl.h
 }
+
+macx {
+    SOURCES += sysinfomacimpl.cpp
+    HEADERS += sysinfomacimpl.h
+}
+
 FORMS += \
         mainwindow.ui
