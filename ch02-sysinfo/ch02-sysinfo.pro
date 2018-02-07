@@ -33,5 +33,10 @@ HEADERS += \
         mainwindow.h \
     sysinfo.h
 
+windows {
+    SOURCES += sysinfowindowsimpl.cpp
+    HEADERS += sysinfowindowsimpl.h
+}
+
 FORMS += \
         mainwindow.ui
