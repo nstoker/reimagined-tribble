@@ -3,6 +3,10 @@
 
 #include <QString>
 
+#include "albumdao.h"
+
+
+
 class QSqlDatabase;
 
 
@@ -23,6 +27,9 @@ protected:
 
 private:
     QSqlDatabase* mDatabase;
+
+public:
+    const AlbumDao AlbumDao;
 };
 
 #endif // DATABASEMANAGER_H
