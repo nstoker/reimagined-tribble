@@ -51,3 +51,6 @@ else:unix: LIBS += -L$$OUT_PWD/../gallery-core/ -lgallery-core
 
 INCLUDEPATH += $$PWD/../gallery-core
 DEPENDPATH += $$PWD/../gallery-core
+
+RESOURCES += \
+    resource.qrc
