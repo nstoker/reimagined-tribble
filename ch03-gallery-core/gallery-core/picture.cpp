@@ -29,5 +29,3 @@ QUrl Picture::setFileUrl(const QUrl &fileUrl)
 {
     mFileUrl = fileUrl;
 }
-
-
