@@ -10,7 +10,7 @@ PictureModel::PictureModel(const AlbumModel &albumModel, QObject *parent):
     QAbstractListModel(parent),
     mDb(DatabaseManager::instance()),
     mAlbumId(-1),
-    mPictures(new vector<unique_ptr<Picture>>())
+    mPictures(new std::vector<std::unique_ptr<Picture>>())
 {
     connect(&albumModel, &AlbumModel::rowsRemoved,
             this, &PictureModel::deletePicturesForAlbum);
@@ -22,8 +22,8 @@ QModelIndex PictureModel::addPicture(const Picture &picture)
 {
     int rows = rowCount();
     beginInsertRows(QModelIndex(), rows, rows);
-    unique_ptr<Picture> newPicture(new Picture(picture));
-    mdB.pictureDao.addPictureInAlbum(AlbumId, *newPicture);
+    std::unique_ptr<Picture> newPicture(new Picture(picture));
+    mDb.pictureDao.addPictureInAlbum(mAlbumId, *newPicture);
     mPictures->push_back(move(newPicture));
     endInsertRows();
 
@@ -39,13 +39,13 @@ int PictureModel::rowCount(const QModelIndex& /*parent*/) const
 
 
 
-QVarient PictureModel::data(const QModelIndex &index, int role) const
+QVariant PictureModel::data(const QModelIndex &index, int role) const
 {
     if(!isIndexValid(index)){
         return QVariant();
     }
 
-    const Picture& picture = *mPictures->at(index, row());
+    const Picture& picture = *mPictures->at(index.row());
 
     switch(role){
     case Qt::DisplayRole:
@@ -149,7 +149,7 @@ bool PictureModel::isIndexValid(const QModelIndex &index) const
 void PictureModel::loadPictures(int albumId)
 {
     if(albumId<=0){
-        mPictures.reset(new vector<unique_ptr<Pictures>>());
+        mPictures.reset(new std::vector<std::unique_ptr<Picture>>());
         return;
     }
 

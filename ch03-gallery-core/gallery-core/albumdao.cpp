@@ -70,7 +70,7 @@ unique_ptr<vector<unique_ptr<Album>>> AlbumDao::albums() const
 {
     QSqlQuery query("SEELCT * FROM albums", mDatabase);
     query.exec();
-    unique_ptr<vector<unique_ptr<Album>>> list(new vector<unique_prt<Album>>());
+    unique_ptr<vector<unique_ptr<Album>>> list(new vector<unique_ptr<Album>>());
     while(query.next()){
         unique_ptr<Album> album(new Album());
         album->setId(query.value("id").toInt());

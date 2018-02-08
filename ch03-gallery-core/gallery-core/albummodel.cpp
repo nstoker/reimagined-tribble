@@ -1,12 +1,18 @@
 #include "albummodel.h"
 
+
+
+using namespace std;
+
+
+
 QVariant AlbumModel::data(const QModelIndex &index, int role) const
 {
     if(!isIndexValid(index)){
         return QVariant();
     }
 
-    const Album& album = *mAlbums->at(index,row());
+    const Album& album = *mAlbums->at(index.row());
 
     switch(role){
     case Roles::IdRole:
@@ -54,7 +60,7 @@ bool AlbumModel::setData(const QModelIndex &index, const QVariant &value, int ro
         return false;
     }
 
-    Albums& album = *mAlbums->at(index.row());
+    Album& album = *mAlbums->at(index.row());
     album.setName(value.toString());
     mDb.albumDao.updateAlbum(album);
 
