@@ -1,6 +1,10 @@
 #include "databasemanager.h"
 
 #include <QSqlDatabase>
+#include <QDebug>
+#include <QSqlError>
+#include <QSqlQuery>
+
 
 
 DatabaseManager& DatabaseManager::instance()
@@ -13,12 +17,14 @@ DatabaseManager& DatabaseManager::instance()
 
 DatabaseManager::DatabaseManager(const QString &path) :
     mDatabase(new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE"))),
-    AlbumDao(*mDatabase)
+    albumDao(*mDatabase),
+    pictureDao(*mDatabase)
 {
     mDatabase->setDatabaseName(path);
     mDatabase->open();
 
-    AlbumDao.init();
+    albumDao.init();
+    pictureDao.init();
 }
 
 
@@ -31,3 +37,12 @@ DatabaseManager::~DatabaseManager()
 
 
 
+void DatabaseManager::debugQuery(const QSqlQuery &query)
+{
+    if(query.lastError().type() == QSqlError::ErrorType::NoError){
+        qDebug() << "Query OK:" << query.lastQuery();
+    } else {
+        qWarning() << "Query KO:" << query.lastError().text();
+        qWarning() << "Query   :" << query.lastQuery();
+    }
+}
