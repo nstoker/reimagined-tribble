@@ -28,7 +28,7 @@ AlbumWidget::AlbumWidget(QWidget *parent) :
     connect(ui->thumbnailListView, &QListView::doubleClicked, this, &AlbumWidget::pictureActivated);
     connect(ui->deleteButton, &QPushButton::clicked, this, &AlbumWidget::deleteAlbum);
     connect(ui->editButton, &QPushButton::clicked, this , &AlbumWidget::editAlbum);
-    connect(ui->addPicuresButton, &QPushButton::clicked, this, &AlbumWidget::addPictures);
+    connect(ui->addPicturesButton, &QPushButton::clicked, this, &AlbumWidget::addPictures);
 }
 
 AlbumWidget::~AlbumWidget()
