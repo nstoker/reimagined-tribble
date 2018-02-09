@@ -68,7 +68,7 @@ int AlbumModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent); // This avoids the C4100 error
 
-    return mAlbums->size();
+    return mAlbums->size(); // FIXME C4267 conversion from size_t to int: possible loss of data
 }
 
 
