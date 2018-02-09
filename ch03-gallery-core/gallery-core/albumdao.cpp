@@ -59,6 +59,7 @@ void AlbumDao::removeAlbum(int id) const
 {
     QSqlQuery query(mDatabase);
     query.prepare("DELETE FROM albums WHERE id = (:id)");
+    query.bindValue(":id", id);
     query.exec();
 
     DatabaseManager::debugQuery(query);
