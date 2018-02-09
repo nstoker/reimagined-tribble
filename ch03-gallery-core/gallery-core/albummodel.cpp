@@ -6,6 +6,16 @@ using namespace std;
 
 
 
+AlbumModel::AlbumModel(QObject *parent) :
+    QAbstractListModel(parent),
+    mDb(DatabaseManager::instance()),
+    mAlbums(mDb.albumDao.albums())
+{
+
+}
+
+
+
 QVariant AlbumModel::data(const QModelIndex &index, int role) const
 {
     if(!isIndexValid(index)){
@@ -96,3 +106,15 @@ bool AlbumModel::removeRows(int row, int count, const QModelIndex &parent)
 }
 
 
+
+bool AlbumModel::isIndexValid(const QModelIndex &index) const
+{
+    if(index.row() < 0
+            || index.row() >= rowCount()
+            || !index.isValid())
+    {
+        return false;
+    }
+
+    return true;
+}
