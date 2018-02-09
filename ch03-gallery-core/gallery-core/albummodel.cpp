@@ -64,6 +64,15 @@ QModelIndex AlbumModel::addAlbum(const Album &album)
 
 
 
+int AlbumModel::rowCount(const QModelIndex &parent) const
+{
+    Q_UNUSED(parent); // This avoids the C4100 error
+
+    return mAlbums->size();
+}
+
+
+
 bool AlbumModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if(!isIndexValid(index) || role != Roles::NameRole) {

@@ -6,10 +6,9 @@
 
 #include "albummodel.h"
 #include "picturemodel.h"
+#include "thumbnailproxymodel.h"
+#include "picturedelegate.h"
 
-
-
-//class PictureDelegate; // Unsure if this is needed
 
 
 AlbumWidget::AlbumWidget(QWidget *parent) :
@@ -47,11 +46,11 @@ void AlbumWidget::setAlbumModel(AlbumModel *albumModel)
     mAlbumModel = albumModel;
 
     connect(mAlbumModel, &QAbstractItemModel::dataChanged,
-            [this](const QModelIndex &topLeft) {
-        if(topLeft == mAlbumSelectionModel->currentIndex()){
-            loadAlbum((topLeft)); }
-        ));
-    }
+            [this] (const QModelIndex &topLeft) {
+        if (topLeft == mAlbumSelectionModel->currentIndex()) {
+            loadAlbum(topLeft);
+        }
+    });
 }
 
 
@@ -67,7 +66,7 @@ void AlbumWidget::setAlbumSelectionModel(QItemSelectionModel *albumSelectionMode
             return;
         }
 
-        loadALbum(selected.indexes().first());
+        loadAlbum(selected.indexes().first());
     });
 }
 
@@ -104,7 +103,8 @@ void AlbumWidget::editAlbum()
     if(mAlbumSelectionModel->selectedIndexes().isEmpty())
         return;
 
-    QModelIndex oldAlbumName = mAlbumModel->data(currentAlbumIndex, AlbumModel::Roles::NameRole).toString();
+    QModelIndex currentAlbumIndex = mAlbumSelectionModel->selectedIndexes().first();
+    QString oldAlbumName = mAlbumModel->data(currentAlbumIndex, AlbumModel::Roles::NameRole).toString();
 
     bool ok;
     QString newName = QInputDialog::getText(this,
@@ -147,7 +147,7 @@ void AlbumWidget::clearUi()
     ui->albumName->setText("");
     ui->deleteButton->setVisible(false);
     ui->editButton->setVisible(false);
-    ui->addPicuresButton->setVisible(false);
+    ui->addPicturesButton->setVisible(false);
 }
 
 
@@ -158,5 +158,5 @@ void AlbumWidget::loadAlbum(const QModelIndex& albumIndex)
     ui->albumName->setText(mAlbumModel->data(albumIndex, Qt::DisplayRole).toString());
     ui->deleteButton->setVisible(true);
     ui->editButton->setVisible(true);
-    ui->addPicuresButton->setVisible(true);
+    ui->addPicturesButton->setVisible(true);
 }
