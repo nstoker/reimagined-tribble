@@ -29,14 +29,16 @@ SOURCES += \
     gallerywidget.cpp \
     albumlistwidget.cpp \
     albumwidget.cpp \
-    picturewidget.cpp
+    picturewidget.cpp \
+    thumbnailproxymodel.cpp
 
 HEADERS += \
         mainwindow.h \
     gallerywidget.h \
     albumlistwidget.h \
     albumwidget.h \
-    picturewidget.h
+    picturewidget.h \
+    thumbnailproxymodel.h
 
 FORMS += \
         mainwindow.ui \
