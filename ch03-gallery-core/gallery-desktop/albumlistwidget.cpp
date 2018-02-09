@@ -4,7 +4,7 @@
 
 #include <QInputDialog>
 #include "albummodel.h"
-
+#include "album.h"
 
 
 AlbumListWidget::AlbumListWidget(QWidget *parent) :
