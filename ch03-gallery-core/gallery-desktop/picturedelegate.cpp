@@ -9,7 +9,8 @@ const unsigned int BANNER_TEXT_COLOR  = 0xffffff;
 const unsigned int HIGHLIGHT_ALPHA = 100;
 
 
-PictureDelegate::PictureDelegate(QObject *parent)
+PictureDelegate::PictureDelegate(QObject *parent) :
+    QStyledItemDelegate(parent)
 {
 
 }
@@ -32,7 +33,7 @@ void PictureDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
     painter->drawText(bannerRect, Qt::AlignCenter, filename);
 
     if(option.state.testFlag(QStyle::State_Selected)){
-        QColor selectedColor = option.palette.highlight()().color();
+        QColor selectedColor = option.palette.highlight().color();
         painter->fillRect(option.rect, selectedColor);
     }
 
@@ -41,7 +42,7 @@ void PictureDelegate::paint(QPainter *painter, const QStyleOptionViewItem &optio
 
 
 
-void PictureDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+QSize PictureDelegate::sizeHint(const QStyleOptionViewItem& /*option*/, const QModelIndex &index) const
 {
     const QPixmap& pixmap = index.model()->data(index, Qt::DecorationRole).value<QPixmap>();
     return pixmap.size();
