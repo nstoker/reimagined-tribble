@@ -72,6 +72,21 @@ void AlbumWidget::setAlbumSelectionModel(QItemSelectionModel *albumSelectionMode
 
 
 
+void AlbumWidget::setPictureModel(ThumbnailProxyModel *pictureModel)
+{
+    mPictureModel = pictureModel;
+    ui->thumbnailListView->setModel(pictureModel);
+}
+
+
+
+void AlbumWidget::setPictureSelectionModel(QItemSelectionModel *selectionModel)
+{
+    ui->thumbnailListView->setSelectionModel(selectionModel);
+}
+
+
+
 void AlbumWidget::deleteAlbum()
 {
     if(mAlbumSelectionModel->selectedIndexes().isEmpty())
