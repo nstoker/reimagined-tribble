@@ -34,7 +34,7 @@ QModelIndex PictureModel::addPicture(const Picture &picture)
 
 int PictureModel::rowCount(const QModelIndex& /*parent*/) const
 {
-    return mPictures->size();
+    return mPictures->size(); // FIXME: Warning C4267 conversion from size_t to int: possible loss of data
 }
 
 
