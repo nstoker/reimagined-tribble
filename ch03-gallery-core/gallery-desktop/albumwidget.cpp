@@ -9,6 +9,9 @@
 
 
 
+//class PictureDelegate; // Unsure if this is needed
+
+
 AlbumWidget::AlbumWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::AlbumWidget),
@@ -24,6 +27,7 @@ AlbumWidget::AlbumWidget(QWidget *parent) :
     ui->thumbnailListView->setResizeMode(QListView::Adjust);
     ui->thumbnailListView->setFlow(QListView::LeftToRight);
     ui->thumbnailListView->setWrapping(true);
+    ui->thumbnailListView->setItemDelegate(new PictureDelegate(this));
 
     connect(ui->thumbnailListView, &QListView::doubleClicked, this, &AlbumWidget::pictureActivated);
     connect(ui->deleteButton, &QPushButton::clicked, this, &AlbumWidget::deleteAlbum);

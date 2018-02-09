@@ -30,7 +30,8 @@ SOURCES += \
     albumlistwidget.cpp \
     albumwidget.cpp \
     picturewidget.cpp \
-    thumbnailproxymodel.cpp
+    thumbnailproxymodel.cpp \
+    picturedelegate.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS += \
     albumlistwidget.h \
     albumwidget.h \
     picturewidget.h \
-    thumbnailproxymodel.h
+    thumbnailproxymodel.h \
+    picturedelegate.h
 
 FORMS += \
         mainwindow.ui \
