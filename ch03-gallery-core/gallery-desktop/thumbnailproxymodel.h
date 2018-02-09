@@ -18,8 +18,8 @@ public:
     ThumbnailProxyModel(QObject* parent = 0);
 
     QVariant data(const QModelIndex &proxyIndex, int role) const override;
-    void setSourceModel(QAbstractItemModel* sourceModel()) override;
-    PictureModel* PictureModel() const;
+    void setSourceModel(QAbstractItemModel* sourceModel) override;
+    PictureModel* pictureModel() const;
 
 private:
     void generateThumbnails(const QModelIndex& startIndex, int count);

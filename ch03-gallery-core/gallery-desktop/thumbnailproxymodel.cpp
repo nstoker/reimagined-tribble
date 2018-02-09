@@ -1,10 +1,17 @@
 #include "thumbnailproxymodel.h"
 
+
+#include "picturemodel.h"
+
+
+
 const unsigned int THUMBNAIL_SIZE = 350;
 
 
 
-ThumbnailProxyModel::ThumbnailProxyModel(QObject *parent)
+ThumbnailProxyModel::ThumbnailProxyModel(QObject *parent) :
+    QIdentityProxyModel(parent),
+    mThumbnails()
 {
 
 }
@@ -37,7 +44,7 @@ void ThumbnailProxyModel::reloadThumbnails()
 
 
 
-void ThumbnailProxyModel::setSourceModel(QAbstractItemModel *sourceModel())
+void ThumbnailProxyModel::setSourceModel(QAbstractItemModel *sourceModel)
 {
     QIdentityProxyModel::setSourceModel(sourceModel);
 
@@ -49,14 +56,14 @@ void ThumbnailProxyModel::setSourceModel(QAbstractItemModel *sourceModel())
         reloadThumbnails();
     });
     connect(sourceModel, &QAbstractItemModel::rowsInserted,
-            [this] (const QModelIndex& parent, int first, int last) {
+            [this] (const QModelIndex& /*parent*/, int first, int last) {
         generateThumbnails(index(first, 0), last - first + 1);
     });
 }
 
 
 
-QVariant ThumbnailProxyModel::data(const QModelIndex &proxyIndex, int role) const
+QVariant ThumbnailProxyModel::data(const QModelIndex& index, int role) const
 {
     if(role != Qt::DecorationRole) {
         return QIdentityProxyModel::data(index, role);
@@ -64,14 +71,14 @@ QVariant ThumbnailProxyModel::data(const QModelIndex &proxyIndex, int role) cons
 
     QString filepath = sourceModel()->data(index, PictureModel::Roles::FilePathRole).toString();
 
-    return *mThumbnails[fielpath];
+    return *mThumbnails[filepath];
 }
 
 
 
-PictureModel* ThumbnailProxyModel::PictureModel() const
+PictureModel* ThumbnailProxyModel::pictureModel() const
 {
-    return static_cast<PictureModel()*>(sourceModel());
+    return static_cast<PictureModel*>(sourceModel());
 }
 
 
