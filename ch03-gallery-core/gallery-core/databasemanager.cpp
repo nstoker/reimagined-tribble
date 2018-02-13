@@ -32,7 +32,6 @@ DatabaseManager::DatabaseManager(const QString &path) :
 DatabaseManager::~DatabaseManager()
 {
     mDatabase->close();
-    delete mDatabase;
 }
 
 

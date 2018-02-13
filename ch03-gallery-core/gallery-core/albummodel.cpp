@@ -1,12 +1,28 @@
 #include "albummodel.h"
 
+
+
+using namespace std;
+
+
+
+AlbumModel::AlbumModel(QObject *parent) :
+    QAbstractListModel(parent),
+    mDb(DatabaseManager::instance()),
+    mAlbums(mDb.albumDao.albums())
+{
+
+}
+
+
+
 QVariant AlbumModel::data(const QModelIndex &index, int role) const
 {
     if(!isIndexValid(index)){
         return QVariant();
     }
 
-    const Album& album = *mAlbums->at(index,row());
+    const Album& album = *mAlbums->at(index.row());
 
     switch(role){
     case Roles::IdRole:
@@ -48,13 +64,22 @@ QModelIndex AlbumModel::addAlbum(const Album &album)
 
 
 
+int AlbumModel::rowCount(const QModelIndex &parent) const
+{
+    Q_UNUSED(parent); // This avoids the C4100 error
+
+    return mAlbums->size(); // FIXME C4267 conversion from size_t to int: possible loss of data
+}
+
+
+
 bool AlbumModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if(!isIndexValid(index) || role != Roles::NameRole) {
         return false;
     }
 
-    Albums& album = *mAlbums->at(index.row());
+    Album& album = *mAlbums->at(index.row());
     album.setName(value.toString());
     mDb.albumDao.updateAlbum(album);
 
@@ -90,3 +115,15 @@ bool AlbumModel::removeRows(int row, int count, const QModelIndex &parent)
 }
 
 
+
+bool AlbumModel::isIndexValid(const QModelIndex &index) const
+{
+    if(index.row() < 0
+            || index.row() >= rowCount()
+            || !index.isValid())
+    {
+        return false;
+    }
+
+    return true;
+}

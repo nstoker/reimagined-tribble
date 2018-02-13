@@ -1,6 +1,9 @@
 #ifndef ALBUM_H
 #define ALBUM_H
 
+#include <QString>
+
+
 #include "gallery-core_global.h"
 
 
