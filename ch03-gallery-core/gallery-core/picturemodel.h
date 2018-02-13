@@ -22,14 +22,15 @@ class GALLERYCORESHARED_EXPORT PictureModel : public QAbstractListModel
 
 public:
     enum Roles {
-        FilePathRole = Qt::UserRole + 1
+        UrlRole = Qt::UserRole + 1,
+        FilePathRole,
     };
 
     PictureModel(const AlbumModel& albumModel, QObject* parent = 0);
 
     QModelIndex addPicture(const Picture& picture);
 
-    int rowCount(const QModelIndex &parent = QModelIdnex()) const override;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     bool removeRows(int row, int count, const QModelIndex& parent) override;
     QHash<int, QByteArray> roleNames() const override;

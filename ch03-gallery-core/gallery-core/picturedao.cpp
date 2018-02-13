@@ -24,9 +24,9 @@ void PictureDao::init() const
     if(!mDatabase.tables().contains("pictures")) {
         QSqlQuery query(mDatabase);
         query.exec(QString("CREATE TABLE pictures ("
-                           + "id INTEGER PRIMARY KEY AUTOINCREMENT"
-                           + "album_id INTEGER, "
-                           + "url TEXT)"
+                           "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                           "album_id INTEGER, "
+                           "url TEXT)"
                            ));
 
         DatabaseManager::debugQuery(query);
@@ -39,7 +39,7 @@ void PictureDao::addPictureInAlbum(int albumId, Picture &picture) const
 {
     QSqlQuery query(mDatabase);
     query.prepare(QString("INSERT INTO pictures (album_id, url)"
-                          + "VALUES ( :album_id, :url )"));
+                          "VALUES ( :album_id, :url )"));
     query.bindValue(":album_id", albumId);
     query.bindValue(":url", picture.fileUrl());
     query.exec();
@@ -71,7 +71,7 @@ void PictureDao::removePicturesForAlbum(int albumId) const
     DatabaseManager::debugQuery(query);
 }
 
-unique_prt<vector<unique_ptr<Picture>>> PictureDao::picturesForAlbum(int albumId) const
+unique_ptr<vector<unique_ptr<Picture>>> PictureDao::picturesForAlbum(int albumId) const
 {
     QSqlQuery query(mDatabase);
     query.prepare("SELECT * FROM pictures WHERE album_id = (:album_id)");
