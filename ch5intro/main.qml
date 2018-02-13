@@ -9,6 +9,9 @@ Window {
     MyToolbar {
         id: myToolbar
         width: parent.width
+
+        title: "World Domination R Us"
+        iconColor: "yellow"
     }
 
     RowLayout
