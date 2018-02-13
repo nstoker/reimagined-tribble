@@ -7,7 +7,7 @@ import QtQuick.Controls 2.2
 
 Page {
     property alias toolBarButtons: buttonsLoader.sourceComponent
-    property alian toolBarTitle: titleLabel.text
+    property alias toolBarTitle: titleLabel.text
 
     header: ToolBarTheme {
         RowLayout {
