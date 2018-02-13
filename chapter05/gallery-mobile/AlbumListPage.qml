@@ -1,15 +1,10 @@
-import QtQuick 2.0
-import QtQuick.Layouts 1.3
+import QtQuick 2.9
 import QtQuick.Controls 2.2
+// import "." // This might be needed https://bugreports.qt.io/browse/QTBUG-34418
 
-Page {
-    header: ToolBar {
-        Label {
-            Layout.fillWidth: true
-            text: "Albums"
-            font.pointSize: 30
-        }
-    }
+
+PageTheme {
+    toolBarTitle: "Albums"
 
     ListView {
         id: albumList
@@ -20,12 +15,12 @@ Page {
         delegate: Rectangle {
             width: parent.width
             height: 120
-            color: "#d0d1d2"
+            color: Style.buttonBackground
 
             Text {
                 text: qsTr("name")
                 font.pointSize: 16
-                color: "#000000"
+                color: Style.text
                 anchors.verticalCenter: parent.verticalCenter
             }
 
