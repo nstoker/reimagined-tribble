@@ -5,6 +5,26 @@ import QtQuick.Controls 2.2
 
 PageTheme {
     toolBarTitle: "Albums"
+    toolBarButtons: ToolButton {
+        background: Image {
+            source: "qrc:/res/icons/album.add.svg"
+        }
+
+        onClicked: {
+            newAlbumDialog.open()
+        }
+    }
+
+    InputDialog {
+        id: newAlbumDialog
+        title: "New album"
+        label: "Album name:"
+        hint: "My album"
+
+        onAccepted: {
+            albumModel.addAlbumFromName(editText.text)
+        }
+    }
 
     ListView {
         id: albumList
