@@ -64,6 +64,13 @@ QModelIndex AlbumModel::addAlbum(const Album &album)
 
 
 
+void AlbumModel::addAlbumFromName(const QString &name)
+{
+    addAlbum(Album(name));
+}
+
+
+
 int AlbumModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent); // This avoids the C4100 error
