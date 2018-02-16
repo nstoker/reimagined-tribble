@@ -22,7 +22,7 @@ double SysInfoMacImpl::memoryUsed()
     vm_statistics64_data_t vmStats;
 
     mach_port_t machPort = mach_host_self();
-    mach_msg_type_number_t count = sizeof(vmData) / sizeof(natural_t);
+    mach_msg_type_number_t count = sizeof(vmStats) / sizeof(natural_t);
     host_page_size(machPort, &pageSize);
 
     host_statistics64(machPort, HOST_VM_INFO, (host_info64_t)&vmStats, &count);
@@ -35,8 +35,27 @@ double SysInfoMacImpl::memoryUsed()
 
     double percent = (double)totalMemoryUsed / (double) totalMemory * 100.0;
 
-    return qBound(0, percent, 100.0);
+    return qBound(0.0, percent, 100.0);
 }
+
+
+
+double SysInfoMacImpl::cpuLoadAverage()
+{
+    QVector<qulonglong> firstSample = mCpuLoadLastValues;
+    QVector<qulonglong> secondSample = cpuRawData();
+    mCpuLoadLastValues = secondSample;
+
+    double overall = (secondSample[0] - firstSample[0])
+            + (secondSample[1] - firstSample[1])
+            + (secondSample[2] - firstSample[2]);
+
+    double total = overall + (secondSample[3] - firstSample[3]);
+    double percent = (overall / total) * 100.0;
+
+    return qBound(0.0, percent, 100.0);
+}
+
 
 QVector<qulonglong> SysInfoMacImpl::cpuRawData()
 {
@@ -48,7 +67,7 @@ QVector<qulonglong> SysInfoMacImpl::cpuRawData()
 
     for(unsigned int i=0; i<cpuCount;i++){
         unsigned int maxTicks = CPU_STATE_MAX *i;
-        totalUser += cpuInfo.cpu_ticks[MAX_Ticks + CPU_STATE_USER];
+        totalUser += cpuInfo.cpu_ticks[maxTicks + CPU_STATE_USER];
         totalUserNice += cpuInfo.cpu_ticks[maxTicks + CPU_STATE_SYSTEM];
         totalSystem += cpuInfo.cpu_ticks[maxTicks + CPU_STATE_NICE];
         totalIdle += cpuInfo.cpu_ticks[maxTicks + CPU_STATE_IDLE];
