@@ -51,9 +51,9 @@ HEADERS += \
 #    INSTALLS += target
 #}
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/./release/ -lgallery-core
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/./debug/ -lgallery-core
-else:unix: LIBS += -L$$OUT_PWD/./ -lgallery-core
+#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/./release/ -lgallery-core
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/./debug/ -lgallery-core
+#else:unix: LIBS += -L$$OUT_PWD/./ -lgallery-core
 
 INCLUDEPATH += $$PWD/.
 DEPENDPATH += $$PWD/.
