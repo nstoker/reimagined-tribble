@@ -3,7 +3,7 @@ import QtQuick.Controls 2.2
 
 ApplicationWindow {
 
-    readonly property alias  pageStack: StackView
+    readonly property alias  pageStack: stackView
 
     id: app
     visible: true
