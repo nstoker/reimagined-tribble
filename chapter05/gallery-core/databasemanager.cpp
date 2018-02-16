@@ -4,8 +4,8 @@
 #include <QDebug>
 #include <QSqlError>
 #include <QSqlQuery>
-
-
+#include <QFile>
+#include <QStandardPaths>
 
 DatabaseManager& DatabaseManager::instance()
 {
@@ -16,7 +16,7 @@ DatabaseManager& DatabaseManager::instance()
 
     if(!QFile::exists(destinationDbFile)) {
         assetDbFile.copy(destinationDbFile);
-        QFile::setPermissions(destinationDbFile, QFile::writeOwner | QFile::ReadOwner);
+        QFile::setPermissions(destinationDbFile, QFile::WriteOwner | QFile::ReadOwner);
     }
     static DatabaseManager singleton(destinationDbFile);
 #else

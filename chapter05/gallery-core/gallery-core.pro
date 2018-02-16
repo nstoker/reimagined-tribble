@@ -10,6 +10,7 @@ QT       -= gui
 
 TARGET = gallery-core
 TEMPLATE = lib
+CONFIG += lib c++11
 
 DEFINES += GALLERYCORE_LIBRARY
 
@@ -49,3 +50,10 @@ HEADERS += \
 #    target.path = /usr/lib
 #    INSTALLS += target
 #}
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/./release/ -lgallery-core
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/./debug/ -lgallery-core
+else:unix: LIBS += -L$$OUT_PWD/./ -lgallery-core
+
+INCLUDEPATH += $$PWD/.
+DEPENDPATH += $$PWD/.
