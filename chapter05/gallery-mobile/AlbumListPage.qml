@@ -7,7 +7,7 @@ PageTheme {
     toolBarTitle: "Albums"
     toolBarButtons: ToolButton {
         background: Image {
-            source: "qrc:/res/icons/album.add.svg"
+            source: "qrc:/res/icons/album-add.svg"
         }
 
         onClicked: {
