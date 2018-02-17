@@ -54,7 +54,7 @@ PageTheme {
         folder: shortcuts.pictures
         onAccepted: {
             var pictureUrl = dialog.fileUrl
-            pictureModel.addPicturesFromUrl(pictureUrl)
+            pictureModel.addPictureFromUrl(pictureUrl)
             dialog.close()
         }
     }
