@@ -71,6 +71,12 @@ void AlbumModel::addAlbumFromName(const QString &name)
 
 
 
+void AlbumModel::rename(int row, const QString &name)
+{
+    setData(index(row), name, Roles::NameRole);
+}
+
+
 int AlbumModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent); // This avoids the C4100 error
@@ -97,7 +103,7 @@ bool AlbumModel::setData(const QModelIndex &index, const QVariant &value, int ro
 
 
 
-bool AlbumModel::removeRows(int row, int count, const QModelIndex &parent)
+bool AlbumModel::removeRows(int row, int count, const QModelIndex &parent /*  = QModelIndex() */)
 {
     if(row<0
             || row>=rowCount()

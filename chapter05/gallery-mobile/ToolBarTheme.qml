@@ -5,6 +5,6 @@ import QtQuick.Controls 2.2
 
 ToolBar {
     background: Rectangle {
-        color: Style.toolbarBackground
+        color: Style.toolBarBackground
     }
 }

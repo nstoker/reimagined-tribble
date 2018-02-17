@@ -13,5 +13,8 @@
         <file>res/icons/back.svg</file>
         <file>res/icons/photo-add.svg</file>
         <file>res/icons/photo-delete.svg</file>
+        <file>AlbumPage.qml</file>
+        <file>PicturePage.qml</file>
+        <file>qmldir</file>
     </qresource>
 </RCC>
