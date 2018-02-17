@@ -10,7 +10,7 @@ Dialog {
     property string hint: ""
     property alias editText: editTextItem
 
-    standardButtons: StandardButtons.ok | StandardButtons.Cancel
+    standardButtons: StandardButton.Ok | StandardButton.Cancel
 
     onVisibleChanged: {
         editTextItem.focus = true
