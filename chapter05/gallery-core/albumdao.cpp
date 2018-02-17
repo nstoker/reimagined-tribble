@@ -45,7 +45,7 @@ void AlbumDao::addAlbum(Album &album) const
 void AlbumDao::updateAlbum(const Album &album) const
 {
     QSqlQuery query(mDatabase);
-    query.prepare(("UPDATE albumms SET name = (:name) WHERE ID = (:id"));
+    query.prepare(("UPDATE albums SET name = (:name) WHERE ID = (:id)"));
     query.bindValue(":name", album.name());
     query.bindValue(":id", album.id());
     query.exec();
