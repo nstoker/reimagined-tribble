@@ -3,6 +3,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QVariant>
+#include <QDebug>
 
 #include "album.h"
 #include "databasemanager.h"
@@ -48,7 +49,12 @@ void AlbumDao::updateAlbum(const Album &album) const
     query.prepare(("UPDATE albums SET name = (:name) WHERE ID = (:id)"));
     query.bindValue(":name", album.name());
     query.bindValue(":id", album.id());
-    query.exec();
+    if(query.isValid())
+        query.exec();
+    else
+    {
+        qInfo() << "Query not valid";
+    }
 
     DatabaseManager::debugQuery(query);
 }
