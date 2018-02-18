@@ -15,7 +15,7 @@ PageTheme {
                 source: "qrc:/res/icons/photo-delete.svg"
             }
             onClicked: {
-                pictureModel.removeRow(pictureIndex, 1)
+                pictureModel.removeRows(pictureIndex, 1)
                 stackView.pop()
             }
         }
