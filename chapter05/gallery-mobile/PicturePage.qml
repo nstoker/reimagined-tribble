@@ -15,7 +15,7 @@ PageTheme {
             }
             onClicked: {
                 pictureModel.removeRow(pictureIndex, 1)
-                StackView.pop()
+                stackView.pop()
             }
         }
     }
