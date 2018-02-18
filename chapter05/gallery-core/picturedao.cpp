@@ -39,7 +39,7 @@ void PictureDao::addPictureInAlbum(int albumId, Picture &picture) const
 {
     QSqlQuery query(mDatabase);
     query.prepare(QString("INSERT INTO pictures (album_id, url)"
-                          "VALUES ( :album_id, :url )"));
+                          " VALUES ( :album_id, :url )"));
     query.bindValue(":album_id", albumId);
     query.bindValue(":url", picture.fileUrl());
     query.exec();
