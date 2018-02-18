@@ -85,9 +85,7 @@ PageTheme {
                 anchors.fill: parent
                 onClicked: {
                     thumbnailList.currentIndex = index
-                    pageStack.push("qrc:/qml/PicturePage.qml", {
-                                       pictureName: name, pictureIndex: index}
-                                       )
+                    pageStack.push("qrc:/PicturePage.qml", { pictureIndex: index } )
                 }
             }
         }

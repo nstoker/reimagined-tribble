@@ -39,12 +39,12 @@ PageTheme {
         }
 
         onCurrentItemChanged: {
-            toolBarTitleLabel.text = currentItem.itemName
+            toolbarTitleLabel.text = currentItem.itemName
         }
 
         delegate: Rectangle {
             property int itemIndex: index
-            property string itemName: name
+            //property string itemName: name
 
             width: ListView.view.width == 0 ?
                        parent.width : ListView.view.width
