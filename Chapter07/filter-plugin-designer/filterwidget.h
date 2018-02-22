@@ -2,6 +2,10 @@
 #define FILTERWIDGET_H
 
 #include <QWidget>
+#include <QImage>
+#include <memory>
+#include "filter.h"
+#include "filter-plugin-designer_global.h"
 
 namespace Ui {
 class FilterWidget;
@@ -12,10 +16,12 @@ class FILTERPLUGINDESIGNERSHARED_EXPORT FilterWidget : public QWidget
     Q_OBJECT
 
     Q_ENUMS(FilterType)
-    Q_PROPERTY(QString Title READ Title WRITE setTitle)
+    Q_PROPERTY(QString title READ title WRITE setTitle)
     Q_PROPERTY(FilterType filterType READ filterType WRITE setFilterType)
 
 public:
+    enum FilterType { Original, Blur, Grayscale };
+
     explicit FilterWidget(QWidget *parent = 0);
     ~FilterWidget();
 
@@ -47,9 +53,6 @@ private:
 
     QImage mFilteredPicture;
     QImage mFilteredThumbnail;
-
-private:
-    Ui::FilterWidget *ui;
 };
 
 #endif // FILTERWIDGET_H
