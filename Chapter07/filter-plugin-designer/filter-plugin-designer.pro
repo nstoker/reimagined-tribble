@@ -47,14 +47,16 @@ HEADERS += \
     filtergrayscale.h \
     filterblur.h \
     filterwidget.h \
-    filter-plugin-designer_global.h
+    filter-plugin-designer_global.h \
+    filterplugindesigner.h
 
 SOURCES += \
     filter.cpp \
     filteroriginal.cpp \
     filtergrayscale.cpp \
     filterblur.cpp \
-    filterwidget.cpp
+    filterwidget.cpp \
+    filterplugindesigner.cpp
 
 FORMS += \
     filterwidget.ui
