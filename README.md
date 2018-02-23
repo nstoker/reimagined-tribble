@@ -15,3 +15,20 @@ As I use both Linux and Windows 10, this gives me two of the main platforms to w
 Something that appears to be missing from the initial section was a note about ensuring that *something* existed in the layout file, otherwise the application just segfaults.
 
 It seems likely that I've missed something important from Chapter One.
+
+## Chapter Three
+
+## Chapter Four
+The start of a photo management application.
+
+## Chapter Five
+This builds a mobile version of the album manager in Chapter Four.
+
+## Chapter Six
+This requires a Raspberry Pi. Which I don't have.
+
+## Chapter Seven
+Third party libraries without a headache. Too late...
+
+
+
