@@ -28,9 +28,9 @@ PKGCONFIG += opencv
 }
 
 macx {
-    target.path = "$$(QTDIR)/../../QtCreator.app/Contents/Plugins/designer/"
-    target_lib.files = $$OUT_PWD/libs$$(TARGET).dylib
-    target_lib.path = "$$(QTDIR)/../../QtCreator.app/Contents/Plugins/designer/"
+    target.path = "$$(QTDIR)/../../Qt Creator.app/Contents/Plugins/designer/"
+    target_lib.files = $$(OUT_PWD)/libs$$(TARGET).dylib
+    target_lib.path = "$$(QTDIR)/../../Qt Creator.app/Contents/Plugins/designer/"
 
 INSTALLS += target_lib
 
